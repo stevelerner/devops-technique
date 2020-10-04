@@ -4,4 +4,4 @@ Install k3s https://k3s.io/
 `kubectl get pods --all-namespaces`
 
 Docker Desktop for Mac  
-`kubectl config use-context docker-desktop``
+`kubectl config use-context docker-desktop`
