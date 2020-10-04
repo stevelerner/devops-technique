@@ -5,3 +5,6 @@ Install k3s https://k3s.io/
 
 Docker Desktop for Mac  
 `kubectl config use-context docker-desktop`
+
+Shell into pod
+`kubectl exec --stdin --tty PODNAME -- /bin/bash`
