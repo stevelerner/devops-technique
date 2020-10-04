@@ -33,3 +33,18 @@ Execute commands as root
 
 Install sudo  
 `docker exec -it  --user root ubuntu apt-get install -y sudo`
+
+Push image to dockerhub  
+Log in to dockerhub  
+`docker login`
+
+Check images  
+`docker images`
+
+Tag image  
+`docker tag IMAGEID YOURDOCKERHUBUSERNAME/YOURREPOSITORYID:TAG`
+
+Push image to dockerhub  
+`docker push YOURDOCKERHUBUSERNAME/YOURREPOSITORYID`
+
+
