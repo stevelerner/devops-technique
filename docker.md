@@ -5,7 +5,7 @@ Create an ubuntu docker container
 `docker pull ubuntu`
 
 Build image from dockerfile with name  
-`docker build -t NAME .`
+`docker build . -f DOCKERFILE -t NAME `
 
 Build image from specific file  
 `docker build -t CONTAINERIMAGENAME - < DOCKERBUILDFILE`
