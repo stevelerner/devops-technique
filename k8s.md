@@ -20,3 +20,6 @@ Change default namespace
 
 Validate it  
 `kubectl config view --minify | grep namespace:`
+
+Force apply a configuration (to overcome clustertype/nodeport issues  
+`kubectl apply -f [.yaml file] --force`
