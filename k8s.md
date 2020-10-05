@@ -7,7 +7,6 @@ curl -sfL https://get.k3s.io | sh -
 sudo chmod 644 /etc/rancher/k3s/k3s.yaml
 ```
 
-
 `kubectl get pods --all-namespaces`
 
 Docker Desktop for Mac  
@@ -18,5 +17,6 @@ Shell into pod
 
 Change default namespace  
 `kubectl config set-context --current --namespace=<insert-namespace-name-here>`    
+
 Validate it  
 `kubectl config view --minify | grep namespace:`
