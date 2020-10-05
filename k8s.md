@@ -2,7 +2,10 @@ https://opensource.com/article/20/5/kubectl-cheat-sheet
 
 
 Install k3s https://k3s.io/  
-`curl -sfL https://get.k3s.io | sh -`  
+```curl -sfL https://get.k3s.io | sh -
+sudo chmod 644 /etc/rancher/k3s/k3s.yaml
+```
+
 
 `kubectl get pods --all-namespaces`
 
