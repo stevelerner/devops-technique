@@ -11,3 +11,8 @@ Docker Desktop for Mac
 
 Shell into pod  
 `kubectl exec --stdin --tty PODNAME -- /bin/bash`
+
+Change default namespace
+`kubectl config set-context --current --namespace=<insert-namespace-name-here>`  
+# Validate it
+`kubectl config view --minify | grep namespace:`
