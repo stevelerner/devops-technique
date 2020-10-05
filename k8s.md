@@ -14,5 +14,5 @@ Shell into pod
 
 Change default namespace  
 `kubectl config set-context --current --namespace=<insert-namespace-name-here>`    
-# Validate it  
+Validate it  
 `kubectl config view --minify | grep namespace:`
