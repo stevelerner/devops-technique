@@ -9,8 +9,13 @@ Fix 403:
 
 Edit markdown: use Typora
 
+Branches:  
+`git branch` shows current branch  
+`git branch -a` shows all branches  
+`git checkout [branchname]` switches branch  
+`git push origin [branchname]` push changes to branch
+
 # Storing Images and Demos in your Repo
-In this quick walkthough you'll learn how to create a separate branch in your repo to house your screenshots and demo gifs for use in your master's readme.
 
 ## How to
 #### 1. Clone a fresh copy of your repo
