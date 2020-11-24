@@ -11,10 +11,10 @@ Build image from specific file
 `docker build -t CONTAINERIMAGENAME - < DOCKERBUILDFILE`
 
 Run and name a container in background  
-`docker run -id --name CONTAINERNAME CONTAINERIMAGENAME`
+`docker run -idt --name CONTAINERNAME CONTAINERIMAGENAME`
 
 Run container with network using hosts's network  
-`docker run -id --network host --name CONTAINERNAME CONTAINERIMAGENAME`
+`docker run -idt --network host --name CONTAINERNAME CONTAINERIMAGENAME`
 
 Enter container as root in bash shell  
 `docker exec -it CONTAINERNAME bash`
@@ -46,5 +46,3 @@ Tag image
 
 Push image to dockerhub  
 `docker push YOURDOCKERHUBUSERNAME/YOURREPOSITORYID`
-
-
