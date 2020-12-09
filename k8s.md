@@ -28,3 +28,18 @@ Force apply a configuration (to overcome clustertype/nodeport issues
 Install ping/curl on minimal container
 `apt-get install curl`  
 `apt-get install iputils-ping`
+
+Keep container running for testing
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ubuntu
+spec:
+  containers:
+  - name: ubuntu
+    image: ubuntu:latest
+    # Just spin & wait forever
+    command: [ "/bin/bash", "-c", "--" ]
+    args: [ "while true; do sleep 30; done;" ]
+```
