@@ -11,28 +11,13 @@ Build image from specific file
 `docker build -t CONTAINERIMAGENAME - < DOCKERBUILDFILE`
 
 Run and name a container in background  
-`docker run -idt --name CONTAINERNAME CONTAINERIMAGENAME`
+`docker run -idt --name CONTAINERNAME CONTAINERIMAGENAME bash`
 
-Run container with network using hosts's network  
-`docker run -idt --network host --name CONTAINERNAME CONTAINERIMAGENAME`
+Run container in background with network using hosts's network  
+`docker run -idt --network host --name CONTAINERNAME CONTAINERIMAGENAME bash`
 
 Enter container as root in bash shell  
 `docker exec -it CONTAINERNAME bash`
-
-Install sudo  
-`docker exec -it  --user root ubuntu apt-get install -y sudo`
-
-Run docker container Ubuntu as user 'nobody'  
-`docker run --name ubuntu --user nobody -id ubuntu`
-
-Get back into container as user 'nobody'
-`docker exec -it --user nobody ubuntu /bin/bash`
-
-Execute commands as root  
-`docker exec -it  --user root ubuntu apt-get -y update`
-
-Install sudo  
-`docker exec -it  --user root ubuntu apt-get install -y sudo`
 
 Push image to dockerhub  
 Log in to dockerhub  
