@@ -25,11 +25,11 @@ Validate it
 Force apply a configuration (to overcome clustertype/nodeport issues  
 `kubectl apply -f [.yaml file] --force`
 
-Install ping/curl on minimal container
+Install ping/curl on minimal container  
 `apt-get install curl`  
-`apt-get install iputils-ping`
+`apt-get install iputils-ping`  
 
-Keep container running for testing
+Minimal container deploy.yaml for testing:
 ```
 apiVersion: v1
 kind: Pod
