@@ -26,7 +26,7 @@ Force apply a configuration (to overcome clustertype/nodeport issues
 `kubectl apply -f [.yaml file] --force`
 
 Install ping/curl on minimal container  
-`apt-get update`
+`apt-get update`  
 `apt install curl`  
 `apt install iputils-ping`  
 
