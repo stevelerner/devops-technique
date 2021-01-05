@@ -25,6 +25,9 @@ Validate it
 Force apply a configuration (to overcome clustertype/nodeport issues  
 `kubectl apply -f [.yaml file] --force`
 
+See env variables in pod  
+`kubectl exec PODNAME -- printenv`
+
 Install ping/curl on minimal container  
 `apt-get -y update`  
 `apt install -y curl`  
