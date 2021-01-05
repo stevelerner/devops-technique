@@ -7,6 +7,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'sainnhe/forest-night'
 Plug 'sheerun/vim-polyglot'
 Plug 'Yggdroot/indentLine'
+Plug 'pedrohdz/vim-yaml-folds'
 
 call plug#end()
 
