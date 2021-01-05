@@ -2,8 +2,8 @@
 
 .vimrc = make your vim environment a better IDE
 
-Ensure Vim Plug is enabled: https://github.com/junegunn/vim-plug  
+Step #1 Ensure Vim Plug is enabled: https://github.com/junegunn/vim-plug  
 
-```source setupvim.sh```
+Step #2 ```source setupvim.sh```
 
-in VIM run  `:PlugInstall`
+Step #3 in VIM run  `:PlugInstall`
