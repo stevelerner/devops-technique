@@ -48,3 +48,24 @@ You can also check what branch you are on anytime by using `git branch`. The bra
 You can now use
 `![Demo Animation](../assets/demo.gif?raw=true)`
 in your README to have the gif display on your master's readme.
+
+#### Use remote image repo branches
+
+In main repo:
+
+List remote branches  
+`git branch -r`
+
+Remove everything in the main repo then:
+
+Switch to assets branch  
+`git checkout assets`
+
+Add new files  
+`git add NEWFILE`
+
+Commit  
+`git commit -m "commit"`
+
+Push assets branch  
+`git push origin assets`
