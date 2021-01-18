@@ -1,0 +1,23 @@
+Python Examples for AWS Infra-As-Code / API Control
+
+Recommended installation steps for AWS / Python:
+Install python pip and useful libraries:
+
+apt-get -y install libcurl3 libcurl3-dev libssl-dev python-pip
+
+Install aws command line interface and boto3 aws python library:
+
+As root:
+apt install awscli
+
+As user:
+pip install --upgrade --user awscli
+pip install boto3
+
+Make sure to configure AWS defaults by running as a user not as root:
+
+As user:
+aws configure
+
+You can make a default region without the whole subregion i.e.:
+region = us-east-2

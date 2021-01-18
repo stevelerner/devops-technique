@@ -1,0 +1,4 @@
+To install PyCurl and dependencies:
+
+apt-get -y install libcurl4 libcurl4-dev libssl-dev python-pip
+pip install pycurl
