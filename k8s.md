@@ -28,6 +28,14 @@ Force apply a configuration (to overcome clustertype/nodeport issues
 See env variables in pod  
 `kubectl exec PODNAME -- printenv`
 
+View config of resource  
+`kubectl get RESOURCETYPE RESOURCENAME --output yaml` i.e.  
+kubectl get pod PODNAME--output yaml | more
+
+Patch resource  
+`kubectl patch RESOURCETYPE DEPLOYMENTNAME --patch "$(cat UPDATEDFILE.yaml)"`  
+i.e. kubectl patch deployment DEPLOYMENTNAME --patch "$(cat patch-file.yaml)"
+
 Install ping/curl on minimal container  
 `apt-get -y update`  
 `apt install -y curl`  
