@@ -1,16 +1,41 @@
-set nocompatible	" force VIM functionality
-set encoding=utf8	" proper text encoding
-set nowrap		" Prevent text wrapping on screen
-set nofoldenable	" Prevent folding from appearing by default
-set nu			" Enable line numbers
-set cursorline		" Enable highlighting of current line
-set termguicolors	" Enable 256 color availability
-syntax on		" Enable syntax highlighting
-filetype indent off	" turn off autoindent
-set noai		" turn off autoindent
+set nocompatible                " be iMproved, required
+filetype off                    " required
 
-set list            	" set tab / indent guides
-set listchars=tab:>-    " set tab / indent guides
+" Set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+
+" Download plug-ins to the ~/.vim/plugged/ directory
+call vundle#begin('~/.vim/plugged')
+" Let Vundle manage Vundle
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'sheerun/vim-polyglot'
+Plugin 'lifepillar/vim-solarized8'
+
+call vundle#end()
+filetype plugin indent on
+
+set encoding=utf8               " Proper text encoding
+set nowrap                      " Prevent text wrapping on screen
+set nofoldenable                " Prevent folding from appearing by default
+set nu                          " Enable line numbers
+set cursorline                  " Enable highlighting of current line
+set termguicolors               " Enable 256 color availability
+syntax on                       " Enable syntax highlighting
+filetype indent off             " Turn off autoindent
+set noai                        " Turn off autoindent
+
+set list                        " Set tab / indent guides
+set listchars=tab:>-            " Set tab / indent guides
+
+set incsearch                   " Enable incremental search
+set hlsearch                    " Enable highlight search
+
+set termwinsize=12x0            " Set terminal size
+set splitbelow                  " Always split below
+set mouse=a                     " Enable mouse drag on window splits
+
+set background=dark             " Dark or light
+colorscheme solarized8_high     " Your favorite color scheme's name
 
 " Set up indent and edit behavior for Python
 au BufNewFile,BufRead *.py
@@ -19,6 +44,7 @@ au BufNewFile,BufRead *.py
     \ set shiftwidth=4 |
     \ set textwidth=79 |
     \ set fileformat=unix |
+    \ set expandtab
 
 " Set up indent and edit behavior for YAML
 au BufNewFile,BufRead *.yaml
