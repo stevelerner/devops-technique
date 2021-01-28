@@ -1,6 +1,6 @@
 mkdir -p ~/.vim/bundle
 git clone https://github.com/VundleVim/Vundle.vim.git Vundle.vim
-cp -r Vundle.vim ~/.vim/bundle
+cp -rf Vundle.vim ~/.vim/bundle
 
 cp -rf ./.vimrc ~
 
