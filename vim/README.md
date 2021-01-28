@@ -2,8 +2,15 @@
 
 .vimrc = make your vim environment a better IDE
 
-Step #1 Ensure Vim Plug is enabled: https://github.com/junegunn/vim-plug  
+Install Vundle:
 
-Step #2 ```source setupvim.sh```
+```
+mkdir -p ~/.vim/bundle
+cd ~/.vim/bundle
+git clone https://github.com/VundleVim/Vundle.vim.git Vundle.vim
+```
+Copy .vimrc
+`source setupvim.sh`
 
-Step #3 in VIM run  `:PlugInstall`
+Install plugins:
+`vim +PluginInstall +qall`
