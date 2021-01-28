@@ -56,3 +56,7 @@ let g:forest_night_disable_italic_comment = 1
 
 " Set color scheme
 colorscheme forest-night
+
+" set tab / indent guides
+set list
+set listchars=tab:>-
