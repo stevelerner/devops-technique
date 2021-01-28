@@ -10,4 +10,4 @@ export CLICOLOR=1
 export TERM=xterm-256color" >> ~/.bash_profile
 source ~/.bash_profile
 
-vim +PlugInstall +qall
+vim +PluginInstall +qall
