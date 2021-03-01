@@ -1,3 +1,3 @@
-### DevOps
+### DevOps Technique
 
 Examples and tips/tricks/frequently used commands/code/environment setup etc...
