@@ -11,7 +11,7 @@ find the chart/release: `helm search repo [reponame]`
 
 to find running release: `helm list`
 
-to upgrade: `helm upgrade [runnning release] [chart/release] 
+to upgrade: `helm upgrade [runnning release] [chart/release]`
 
 With new keys:  
 ```
