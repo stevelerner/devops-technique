@@ -10,6 +10,9 @@ export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
 
 `kubectl get pods --all-namespaces`
 
+Show ingress controllers:  
+`kubectl get ing -n`
+
 Docker Desktop for Mac  
 `kubectl config use-context docker-desktop`
 
