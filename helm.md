@@ -1,3 +1,9 @@
+Install helm on ubuntu:
+
+```
+curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
+```
+
 #### helm install
 ```
 helm install --set key1=value1 \
