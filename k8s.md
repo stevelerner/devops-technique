@@ -8,8 +8,9 @@ sudo chmod 644 /etc/rancher/k3s/k3s.yaml
 export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
 ```
 
-Install Docker on Ubuntu:
-```bash <(curl -s https://raw.githubusercontent.com/stevelerner/devops-technique/master/k3s.sh)
+Install Docker on Ubuntu:  
+```
+bash <(curl -s https://raw.githubusercontent.com/stevelerner/devops-technique/master/k3s.sh)
 ```
 
 `kubectl get pods --all-namespaces`
