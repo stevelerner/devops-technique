@@ -13,6 +13,8 @@ Install K3s on Ubuntu:
 bash <(curl -s https://raw.githubusercontent.com/stevelerner/devops-technique/master/k3s.sh)
 ```
 
+create k8s namespace: https://kubernetes.io/docs/tasks/administer-cluster/namespaces-walkthrough/
+
 Install k9s: https://github.com/derailed/k9s/releases
 
 `kubectl get pods --all-namespaces`
