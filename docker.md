@@ -1,5 +1,7 @@
 Install Docker on Ubuntu
-`bash <(curl -s https://raw.githubusercontent.com/stevelerner/devops-technique/master/docker-install.sh)`
+```
+bash <(curl -s https://raw.githubusercontent.com/stevelerner/devops-technique/master/docker-install.sh)
+```
 
 Create an ubuntu docker container  
 `docker pull ubuntu`
