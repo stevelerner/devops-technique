@@ -17,6 +17,15 @@ create k8s namespace: https://kubernetes.io/docs/tasks/administer-cluster/namesp
 
 Install k9s: https://github.com/derailed/k9s/releases
 
+Use env bash env variables in `deployment.yaml`
+export NAMESPACE=example. 
+in .yaml use: $NAMESPACE 
+to deploy:  
+```
+envsubst < deployment.yaml  | kubectl apply -f -
+```
+
+Show all pods:  
 `kubectl get pods --all-namespaces`
 
 Show ingress controllers: `kubectl get ing -n`   
