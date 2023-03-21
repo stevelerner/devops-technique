@@ -6,6 +6,9 @@ bash <(curl -s https://raw.githubusercontent.com/stevelerner/devops-technique/ma
 Create an ubuntu docker container  
 `docker pull ubuntu`
 
+See running docker containers  
+`docker ps` 
+
 Build image from dockerfile with name  
 `docker build . -f DOCKERFILE -t NAME `
 
