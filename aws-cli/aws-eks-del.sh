@@ -1,3 +1,3 @@
 eksctl delete cluster \
 --name sl-cluster \
---region us-east-2
+--region us-west-2
