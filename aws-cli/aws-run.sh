@@ -3,8 +3,8 @@ aws ec2 run-instances \
 --count 1 \
 --instance-type t2.xlarge \
 --key-name slerner-us-west-2 \
---security-group-ids sg-0ace3021c90a4594c \
---subnet-id subnet-0db03b53e2a07059d \
+--security-group-ids sg-032d218698f31d86f \
+--subnet-id subnet-037378fd5035994fd \
 --associate-public-ip-address \
 --block-device-mappings 'DeviceName=/dev/sda1,Ebs={VolumeSize=50}' \
 --tag-specifications \
