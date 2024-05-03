@@ -7,6 +7,9 @@ Clone a private repo:
 Fix 403:  
 `git remote set-url origin "https://github-username@github.com/github-username/github-repository-name.git"`
 
+Cache login info so you can push without logging in:  
+`git config --global credential.helper store`  
+
 Edit markdown: use Typora
 
 Branches:  
