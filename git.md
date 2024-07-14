@@ -5,7 +5,8 @@ Clone a private repo:
 `git clone https://USERNAME@github.com/USERNAME/PRIVREPODIR`
 
 Fix 403:  
-`git remote set-url origin "https://github-username@github.com/github-username/github-repository-name.git"`
+`git remote set-url origin "https://github-username:personalaccesscode@github.com/github-username/github-repository-name.git"`
+`git remote set-url origin "https://steve.lerner:personalaccesscode@github.com/coralogix/workshops.git"`
 
 Cache login info so you can push without logging in:  
 `git config --global credential.helper store`  
