@@ -2,31 +2,35 @@ apiVersion: eksctl.io/v1alpha5
 kind: ClusterConfig
 
 metadata:
-  name: lerner
+  name: slerner-eks-cluster
   region: us-west-2
+  version: "1.33"
 
 cloudWatch:
   clusterLogging:
     enableTypes: ["api", "audit", "authenticator", "controllerManager", "scheduler"]
     
 vpc:
-  id: "vpc-07e96f2d14a15ceb0"  # Replace with your existing VPC ID
+  id: "vpc-0a7206594e123924f"  # Replace with your existing VPC ID
   subnets:
     private:
       us-west-2a:
-        id: "subnet-020974f32f148db2d"  # Replace with your existing subnet ID
+        id: "subnet-00774971f1ec66408"  # Replace with your existing subnet ID
       us-west-2b:
-        id: "subnet-030d07a7e4a659c2a"  # Replace with your existing subnet ID
+        id: "subnet-06bcb06f01f102470"  # Replace with your existing subnet ID
+      us-west-2c:
+        id: "subnet-0c03a22ed22d0c322"  # Replace with your existing subnet ID
     public:
       us-west-2a:
-        id: "subnet-0db03b53e2a07059d"  # Replace with your existing subnet ID
+        id: "subnet-037378fd5035994fd"  # Replace with your existing subnet ID
       us-west-2b:
-        id: "subnet-0da0eeca1553541f2"  # Replace with your existing subnet ID
-
+        id: "subnet-06eee96219ed171dc"  # Replace with your existing subnet ID
+      us-west-2c:
+        id: "subnet-0fa652d167425a457"  # Replace with your existing subnet ID
 nodeGroups:
   - name: slerner-k8s-ng
     instanceType: t2.2xlarge
     desiredCapacity: 1
     privateNetworking: true  # Ensures nodes are launched in private subnets
     securityGroups:
-      attachIDs: ["sg-0ace3021c90a4594c"] 
+      attachIDs: ["sg-040ffee93a738fc72", "sg-0a1d7794ee1fc5693"] 
