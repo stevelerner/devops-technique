@@ -1,3 +1,4 @@
+#!/bin/bash
 eksctl create cluster \
     --name=slerner \
     --region=us-west-2 \

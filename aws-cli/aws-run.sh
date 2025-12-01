@@ -1,3 +1,4 @@
+#!/bin/bash
 aws ec2 run-instances \
 --image-id ami-0cf2b4e024cdb6960 \
 --count 1 \

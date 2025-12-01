@@ -1,2 +1,7 @@
-tcpdump alternative:
-ngrep -W byline -t port <...> 
+# Debugging Cheat Sheet
+
+## Network
+**tcpdump alternative:**
+```bash
+ngrep -W byline -t port <...>
+``` 

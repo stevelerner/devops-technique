@@ -1,5 +1,8 @@
-configure multipass on mac for Code access:  
-```
+# Visual Studio Code Cheat Sheet
+
+## Remote Development
+**Configure Multipass on Mac for Code access:**
+```bash
 rm -rf ~/.ssh/known_hosts 
 rm -rf ~/.ssh/id_rsa 
 sudo cp /var/root/Library/Application\ Support/multipassd/ssh-keys/id_rsa ~/.ssh/

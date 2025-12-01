@@ -3,13 +3,12 @@
 
 import pycurl
 import pprint
-
-from StringIO import StringIO
+import io
 
 bearer = ' ##put your token here## ' 
 url = 'https://api.digitalocean.com/v2/account'
 
-buffer = StringIO()
+buffer = io.BytesIO()
 c = pycurl.Curl()
 c.setopt(c.URL, url)
 headers = [ 'Content-Type: application/json', 'Authorization: Bearer %s' % bearer ]
@@ -18,7 +17,7 @@ c.setopt(c.WRITEDATA, buffer)
 c.perform()
 c.close()
 
-body = buffer.getvalue()
+body = buffer.getvalue().decode('utf-8')
 
 pp = pprint.PrettyPrinter()
 pp.pprint(body)

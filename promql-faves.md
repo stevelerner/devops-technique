@@ -1,1 +1,6 @@
-show cardinality of a metric over time: `count({__name__=~".*metricnamehere.*"})`
+# PromQL Favorites
+
+**Show cardinality of a metric over time:**
+```promql
+count({__name__=~".*metricnamehere.*"})
+```

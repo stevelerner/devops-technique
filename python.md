@@ -1,15 +1,25 @@
-install pip  
+# Python Cheat Sheet
 
-`sudo apt install -y python3-pip`
+## Installation
+**Install pip:**
+```bash
+sudo apt install -y python3-pip
+```
 
-list outdated packages  
+## Package Management
+**List outdated packages:**
+```bash
+python3 -m pip list --outdated
+```
 
-`python3 -m pip list --outdated`
+**Update packages:**
 
-update packages
+*Host:*
+```bash
+python3 -m pip freeze --user | cut -d'=' -f1 | xargs -n1 python3 -m pip install -U
+```
 
-host  
-`python3 -m pip freeze --user | cut -d'=' -f1 | xargs -n1 python3 -m pip install -U`
-
-vm  
-`python3 -m pip freeze | cut -d'=' -f1 | xargs -n1 python3 -m pip install -U`
+*VM:*
+```bash
+python3 -m pip freeze | cut -d'=' -f1 | xargs -n1 python3 -m pip install -U
+```

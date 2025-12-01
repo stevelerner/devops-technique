@@ -1,4 +1,14 @@
-sudo dkpg -i package.deb
-to install deps
+# DPKG Cheat Sheet
+
+## Installation
+**Install .deb package:**
+```bash
+sudo dpkg -i package.deb
+```
+
+**Install dependencies (fix broken install):**
+```bash
 sudo apt-get -f install
-double check first install
+```
+
+*Note: Double check first install.*

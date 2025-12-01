@@ -1,69 +1,76 @@
-https://opensource.com/article/20/5/kubectl-cheat-sheet
+# Kubernetes (K8s) Cheat Sheet
 
+**Reference:** [kubectl Cheat Sheet](https://opensource.com/article/20/5/kubectl-cheat-sheet)
 
-Install k3s https://k3s.io/  
-```
+## Installation
+**Install k3s:** [k3s.io](https://k3s.io/)
+```bash
 curl -sfL https://get.k3s.io | sh -
 sudo chmod 644 /etc/rancher/k3s/k3s.yaml
 export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
 ```
 
-Install K3s on Ubuntu:  
-```
+**Install K3s on Ubuntu:**  
+```bash
 bash <(curl -s https://raw.githubusercontent.com/stevelerner/devops-technique/master/k3s.sh)
 ```
 
-create k8s namespace: https://kubernetes.io/docs/tasks/administer-cluster/namespaces-walkthrough/
+**Install k9s:** [Releases](https://github.com/derailed/k9s/releases)
 
-Install k9s: https://github.com/derailed/k9s/releases
+## Configuration & Context
+**Docker Desktop for Mac:**  
+`kubectl config use-context docker-desktop`
 
-Use env bash env variables in `deployment.yaml`
-export NAMESPACE=example. 
-in .yaml use: $NAMESPACE 
-to deploy:  
-```
+**Change default namespace:**  
+`kubectl config set-context --current --namespace=<insert-namespace-name-here>`    
+
+**Validate context:**  
+`kubectl config view --minify | grep namespace:`
+
+## Pod Management
+**Show all pods:**  
+`kubectl get pods --all-namespaces`
+
+**Shell into pod:**  
+`kubectl exec --stdin --tty PODNAME -- /bin/bash`
+
+**See env variables in pod:**  
+`kubectl exec PODNAME -- printenv`
+
+## Resources & Deployment
+**Create k8s namespace:** [Walkthrough](https://kubernetes.io/docs/tasks/administer-cluster/namespaces-walkthrough/)
+
+**Use env bash env variables in `deployment.yaml`:**
+`export NAMESPACE=example`
+In `.yaml` use: `$NAMESPACE` 
+To deploy:  
+```bash
 envsubst < deployment.yaml  | kubectl apply -f -
 ```
 
-Show all pods:  
-`kubectl get pods --all-namespaces`
-
-Show ingress controllers: `kubectl get ing -n`   
-Delete ingress controllers: `delete ingress INGRESSNAME`  
-
-Docker Desktop for Mac  
-`kubectl config use-context docker-desktop`
-
-Shell into pod  
-`kubectl exec --stdin --tty PODNAME -- /bin/bash`
-
-Change default namespace  
-`kubectl config set-context --current --namespace=<insert-namespace-name-here>`    
-
-Validate it  
-`kubectl config view --minify | grep namespace:`
-
-Force apply a configuration (to overcome clustertype/nodeport issues  
+**Force apply a configuration:** (to overcome clustertype/nodeport issues)  
 `kubectl apply -f [.yaml file] --force`
 
-See env variables in pod  
-`kubectl exec PODNAME -- printenv`
+**View config of resource:**  
+`kubectl get RESOURCETYPE RESOURCENAME --output yaml`  
+Example: `kubectl get pod PODNAME --output yaml | more`
 
-View config of resource  
-`kubectl get RESOURCETYPE RESOURCENAME --output yaml` i.e.  
-kubectl get pod PODNAME--output yaml | more
-
-Patch resource  
+**Patch resource:**  
 `kubectl patch RESOURCETYPE DEPLOYMENTNAME --patch "$(cat UPDATEDFILE.yaml)"`  
-i.e. kubectl patch deployment DEPLOYMENTNAME --patch "$(cat patch-file.yaml)"
+Example: `kubectl patch deployment DEPLOYMENTNAME --patch "$(cat patch-file.yaml)"`
 
-Install ping/curl on minimal container  
+## Ingress
+**Show ingress controllers:** `kubectl get ing -A`   
+**Delete ingress controllers:** `delete ingress INGRESSNAME`  
+
+## Debugging Container
+**Install ping/curl on minimal container:**  
 `apt-get -y update`  
 `apt install -y curl`  
 `apt install -y iputils-ping`  
 
-Minimal container deploy.yaml for testing:
-```
+**Minimal container `deploy.yaml` for testing:**
+```yaml
 apiVersion: v1
 kind: Pod
 metadata:

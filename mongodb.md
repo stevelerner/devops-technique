@@ -1,2 +1,7 @@
-run mongo manually as process on mac:  
-`mongod --config /usr/local/etc/mongod.conf --fork`
+# MongoDB Cheat Sheet
+
+## macOS
+**Run mongo manually as process:**  
+```bash
+mongod --config /usr/local/etc/mongod.conf --fork
+```
