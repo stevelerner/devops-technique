@@ -1,23 +1,26 @@
-Single line update:  
+# Git Cheat Sheet
+
+## Quick Commands
+**Single line update:**  
 `git add -A && git commit -m "commit" && git push origin master`
 
-Clone a private repo:  
+**Clone a private repo:**  
 `git clone https://USERNAME@github.com/USERNAME/PRIVREPODIR`
 
-Fix 403:  
+**Fix 403 Error:**  
 `git remote set-url origin "https://github-username:personalaccesscode@github.com/github-username/github-repository-name.git"`   
 `git remote set-url origin "https://steve.lerner:personalaccesscode@github.com/coralogix/workshops.git"`
 
-Cache login info so you can push without logging in:  
+**Cache login info (push without logging in):**  
 `git config --global credential.helper store`  
 
-Edit markdown: use Typora
+**Edit markdown:** use Typora
 
-Branches:  
-`git branch` shows current branch  
-`git branch -a` shows all branches  
-`git checkout [branchname]` switches branch  
-`git push origin [branchname]` push changes to branch
+## Branch Management
+- `git branch`: shows current branch  
+- `git branch -a`: shows all branches  
+- `git checkout [branchname]`: switches branch  
+- `git push origin [branchname]`: push changes to branch
 
 # Storing Images and Demos in your Repo
 
@@ -44,7 +47,7 @@ You can also check what branch you are on anytime by using `git branch`. The bra
 
 `git commit -m "Added Assets"`
 
-#### 4. Finally push your changes
+#### 5. Finally push your changes
 `git push origin assets`
 
 
@@ -73,3 +76,35 @@ Commit
 
 Push assets branch  
 `git push origin assets`
+
+## Clear Cached Credentials (macOS)
+If you get a 403 error even after setting the correct remote URL, your machine might be caching old credentials. Run this to clear them:
+
+```bash
+echo "host=github.com
+protocol=https
+" | git credential-osxkeychain erase
+```
+Then try your push again. Git will prompt you for the new username and password (PAT).
+
+# GitHub CLI (gh)
+
+The `gh` command brings GitHub to your terminal.
+
+**Login:**
+`gh auth login`
+
+**Check status:**
+`gh status`
+
+**Create a repo:**
+`gh repo create`
+
+**View PRs:**
+`gh pr list`
+
+**Checkout a PR:**
+`gh pr checkout [number]`
+
+**Create a release:**
+`gh release create [tag] --generate-notes`
