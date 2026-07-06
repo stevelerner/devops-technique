@@ -11,8 +11,10 @@ A collection of cheat sheets, scripts, and guides for DevOps tasks.
 *   **`docker-install.sh`**: Bash script to install Docker on Ubuntu.
 *   **`k3s.sh`**: Bash script to install K3s (lightweight Kubernetes).
 *   **`python-prep.sh`**: Bash script to prepare a Python environment.
+*   **`sync-forks.sh`**: Bash script that syncs every forked repo in a GitHub account with its upstream via `gh repo sync`.
 
 ## Cheat Sheets & Guides
+*   **`colima-docker.md`**: Colima install and usage on Apple Silicon, including moving Docker image storage to an external SSD.
 *   **`debugging.md`**: Network debugging tips (ngrep).
 *   **`dkpg.md`**: DPKG package management cheat sheet.
 *   **`docker.md`**: Docker commands and container management.
@@ -30,4 +32,5 @@ A collection of cheat sheets, scripts, and guides for DevOps tasks.
 *   **`visualstudiocode.md`**: VS Code remote development configuration.
 
 ## Misc
+*   **`.bashrc`**: Shell aliases (`kubectl`, `history`, quick git commit+push).
 *   **`ubuntu.yaml`**: Kubernetes manifest for a minimal Ubuntu pod.
