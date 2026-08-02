@@ -1,4 +1,5 @@
 #!/bin/bash
+# AMI/key-name/security-group/subnet below are example IDs from a prior account/VPC — replace with your own
 aws ec2 run-instances \
 --image-id ami-0cf2b4e024cdb6960 \
 --count 1 \

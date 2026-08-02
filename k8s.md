@@ -18,6 +18,9 @@ bash <(curl -s https://raw.githubusercontent.com/stevelerner/devops-technique/ma
 **Install k9s:** [Releases](https://github.com/derailed/k9s/releases)
 
 ## Configuration & Context
+**Colima (current Mac setup, see [colima-docker.md](colima-docker.md)):**  
+`kubectl config use-context colima`
+
 **Docker Desktop for Mac:**  
 `kubectl config use-context docker-desktop`
 
@@ -69,17 +72,7 @@ Example: `kubectl patch deployment DEPLOYMENTNAME --patch "$(cat patch-file.yaml
 `apt install -y curl`  
 `apt install -y iputils-ping`  
 
-**Minimal container `deploy.yaml` for testing:**
-```yaml
-apiVersion: v1
-kind: Pod
-metadata:
-  name: ubuntu
-spec:
-  containers:
-  - name: ubuntu
-    image: ubuntu:latest
-    # Just spin & wait forever
-    command: [ "/bin/bash", "-c", "--" ]
-    args: [ "while true; do sleep 30; done;" ]
+**Minimal container for testing:** see [`ubuntu.yaml`](ubuntu.yaml) in the repo root — spins up an `ubuntu:latest` pod that just sleeps forever, ready for `kubectl exec` debugging.
+```bash
+kubectl apply -f ubuntu.yaml
 ```

@@ -1,4 +1,5 @@
 #!/bin/bash
+# vpc-private-subnets/vpc-public-subnets/ssh-public-key below are example IDs from a prior VPC — replace with your own
 eksctl create cluster \
     --name=slerner \
     --region=us-west-2 \
