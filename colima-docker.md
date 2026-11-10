@@ -5,7 +5,7 @@ Colima runs a lightweight Linux VM (via Lima) to provide a Docker (or containerd
 ## Installation
 **Install via Homebrew (Colima + Docker CLI):**
 ```bash
-brew install colima docker docker-compose
+brew install colima docker docker-compose docker-buildx docker-credential-helper
 ```
 
 **Verify you're on Apple Silicon (should print `arm64`):**
@@ -19,9 +19,9 @@ uname -m
 colima start
 ```
 
-**Start with custom resources (CPU/memory/disk):**
+**Start with custom resources (CPU/memory/disk) on Apple Silicon (`vz` = Apple's virtualization framework, `--vz-rosetta` = fast x86 emulation, `virtiofs` = fast mounts):**
 ```bash
-colima start --cpu 4 --memory 8 --disk 60
+colima start --cpu 4 --memory 8 --disk 60 --vm-type vz --vz-rosetta --mount-type virtiofs
 ```
 
 **Check status:**
@@ -73,7 +73,7 @@ du -sh /Volumes/external/colima/.colima-data/_lima/colima/*
 
 Notes:
 - If the external SSD isn't mounted at boot, `colima start` will fail since `~/.colima` is a dangling symlink — mount the drive first.
-- Alternatively, pass `--mountType` / use `colima start --disk` sizing to control how large the underlying disk image grows, but the location is controlled entirely by where `~/.colima` (or `$COLIMA_HOME`) points.
+- The disk image size is set with `--disk`; its location is controlled entirely by where `~/.colima` (or `$COLIMA_HOME`) points.
 - You can also set `COLIMA_HOME=/Volumes/external/colima/.colima-data` in your shell profile instead of symlinking, if you prefer not to touch `~/.colima`.
 
 ## Complete setup without Docker Desktop
@@ -103,7 +103,7 @@ The token is stored in the macOS keychain; macOS may ask once to allow access.
 
 **4. Start the VM:**
 ```bash
-colima start --cpu 4 --memory 6 --disk 60
+colima start --cpu 4 --memory 6 --disk 60 --vm-type vz --vz-rosetta --mount-type virtiofs
 ```
 
 ## Profiles and Docker contexts
@@ -132,3 +132,4 @@ export DOCKER_CONTEXT="${DOCKER_CONTEXT:-colima-${COLIMA_PROFILE:-default}}"
 - **buildx builders are tied to a context.** A `docker-container` builder created under Docker Desktop keeps pointing at its socket and fails with `Cannot connect to the Docker daemon at unix:///Users/<you>/.docker/run/docker.sock`. Remove it (`docker buildx rm <name>`, or delete `~/.docker/buildx/instances/<name>`) and use the context's built-in builder: `docker buildx use colima` (or `colima-<profile>`). Single-platform `--load` builds work fine with it.
 - **Kubernetes:** use `kind` (or `colima start --kubernetes`) instead of Docker Desktop's built-in cluster. kind runs inside the Colima Docker VM.
 - **Memory:** the VM size is fixed at start; raise it with `colima stop && colima start --memory 8`.
+- **Apple Silicon images:** the VM is arm64, so images are arm64 unless you pass `--platform linux/amd64` (emulated; fast with `--vz-rosetta`). See [docker.md](docker.md). Local Kubernetes on top of this: [kind-colima.md](kind-colima.md).

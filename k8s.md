@@ -1,18 +1,12 @@
 # Kubernetes (K8s) Cheat Sheet
 
-**Reference:** [kubectl Cheat Sheet](https://opensource.com/article/20/5/kubectl-cheat-sheet)
+**Reference:** [kubectl cheat sheet](https://kubernetes.io/docs/reference/kubectl/quick-reference/)
 
-## Installation
-**Install k3s:** [k3s.io](https://k3s.io/)
+## Installation (macOS)
 ```bash
-curl -sfL https://get.k3s.io | sh -
-sudo chmod 644 /etc/rancher/k3s/k3s.yaml
-export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
+brew install kubectl kind helm k9s kubectx stern
 ```
-
-**Install K3s on Ubuntu:** `./k3s.sh`
-
-**Install k9s:** `brew install k9s`
+Local clusters: **kind on Colima**, see [kind-colima.md](kind-colima.md).
 
 ## Configuration & Context
 **Mac (Colima + kind, see [colima-docker.md](colima-docker.md)):**  
@@ -31,7 +25,12 @@ export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
 `kubectl get pods --all-namespaces`
 
 **Shell into pod:**  
-`kubectl exec --stdin --tty PODNAME -- /bin/bash`
+`kubectl exec -it PODNAME -- sh`
+
+**Logs (follow / previous crash / all pods of a label):**  
+`kubectl logs -f PODNAME`  
+`kubectl logs PODNAME --previous`  
+`stern LABEL_OR_NAME` (multi-pod tail)
 
 **See env variables in pod:**  
 `kubectl exec PODNAME -- printenv`
@@ -48,7 +47,7 @@ envsubst < deployment.yaml  | kubectl apply -f -
 ```
 
 **Force apply a configuration:** (to overcome clustertype/nodeport issues)  
-`kubectl apply -f [.yaml file] --force`
+`kubectl apply -f [.yaml file] --force` (deletes and recreates; only when a plain apply is rejected)
 
 **View config of resource:**  
 `kubectl get RESOURCETYPE RESOURCENAME --output yaml`  
@@ -62,13 +61,13 @@ Example: `kubectl patch deployment DEPLOYMENTNAME --patch "$(cat patch-file.yaml
 **Show ingress controllers:** `kubectl get ing -A`   
 **Delete an ingress:** `kubectl delete ingress INGRESSNAME`  
 
-## Debugging Container
-**Install ping/curl on minimal container:**  
-`apt-get -y update`  
-`apt install -y curl`  
-`apt install -y iputils-ping`  
-
-**Minimal container for testing:** see [`ubuntu.yaml`](ubuntu.yaml) in the repo root — spins up an `ubuntu:latest` pod that just sleeps forever, ready for `kubectl exec` debugging.
+## Debugging
+**Attach a throwaway debug container to a running pod (no tools needed in the image):**
 ```bash
-kubectl apply -f ubuntu.yaml
+kubectl debug -it PODNAME --image=nicolaka/netshoot --target=CONTAINERNAME
 ```
+**One-off pod with a shell and network tools:**
+```bash
+kubectl run tmp --rm -it --image=nicolaka/netshoot -- bash
+```
+**Why is it pending / crashing:** `kubectl describe pod PODNAME` (Events at the bottom), `kubectl get events --sort-by=.lastTimestamp`.

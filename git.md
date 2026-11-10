@@ -4,8 +4,8 @@
 **Single line update:**  
 `git add -A && git commit -m "message" && git push`
 
-**Clone a private repo:**  
-`git clone https://USERNAME@github.com/USERNAME/PRIVREPODIR`
+**Clone (works for private repos once `gh auth login` is done):**  
+`gh repo clone OWNER/REPO`
 
 **Authenticate (HTTPS) with the GitHub CLI, no tokens in URLs:**  
 ```bash
@@ -16,8 +16,17 @@ A 403 on push usually means the cached credential has no write access to that re
 ## Branch Management
 - `git branch`: shows current branch  
 - `git branch -a`: shows all branches  
-- `git checkout [branchname]`: switches branch  
+- `git switch [branchname]`: switches branch (`git switch -c name` creates one)  
 - `git push origin [branchname]`: push changes to branch
+
+## Worktrees (parallel branches / parallel AI agents)
+One repo, several checked-out branches in separate folders, each with its own working tree, so agents or tasks do not trample each other:
+```bash
+git worktree add ../myrepo-feature -b feature     # new branch in a sibling folder
+git worktree list
+git worktree remove ../myrepo-feature             # when merged
+```
+Run one agent per worktree. See [ai-agents.md](ai-agents.md).
 
 ## Clear Cached Credentials (macOS)
 If you get a 403 error even after setting the correct remote URL, your machine might be caching old credentials. Run this to clear them:

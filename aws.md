@@ -31,8 +31,8 @@ aws ecr-public get-login-password --region us-east-1 | docker login --username A
 ## EKS
 ```bash
 brew install eksctl            # or see https://eksctl.io
-eksctl create cluster --name NAME --region us-west-2 --nodes 1 --node-type t3.xlarge
+eksctl create cluster --name NAME --region us-west-2 --nodes 1 --node-type m7g.large   # Graviton (arm64) matches images built on your Mac; use m6i/t3 for x86
 aws eks update-kubeconfig --region us-west-2 --name NAME
 eksctl delete cluster --name NAME --region us-west-2      # stop paying for it
 ```
-Prefer a `cluster.yaml` (`eksctl create cluster -f cluster.yaml`) for anything you will recreate. Use current instance families (`t3`/`m6i`/`m7g`), not `t2`.
+Prefer a `cluster.yaml` (`eksctl create cluster -f cluster.yaml`) for anything you will recreate. Use current instance families, not `t2`. Graviton (`t4g`/`m7g`) runs the arm64 images you build on an Apple Silicon Mac as-is; x86 instances (`t3`/`m6i`) need `docker buildx build --platform linux/amd64`.

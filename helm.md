@@ -30,3 +30,19 @@ helm install [release] [chart i.e. chart/release] \
 ```bash
 helm upgrade --reuse-values -f ./file.yaml [release] [chart/release]
 ```
+
+**Install or upgrade in one command (idempotent):**
+```bash
+helm upgrade --install [release] [chart] -n [namespace] --create-namespace -f values.yaml
+```
+
+**Render without installing / dry run:**
+```bash
+helm template [release] [chart] -f values.yaml
+helm upgrade --install [release] [chart] --dry-run --debug
+```
+
+**Charts from an OCI registry:**
+```bash
+helm install [release] oci://REGISTRY/PATH/chart --version X.Y.Z
+```
