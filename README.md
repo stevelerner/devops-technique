@@ -14,7 +14,7 @@ A collection of cheat sheets, scripts, and guides for DevOps tasks.
 *   **`sync-forks.sh`**: Bash script that syncs every forked repo in a GitHub account with its upstream via `gh repo sync`.
 
 ## Cheat Sheets & Guides
-*   **`colima-docker.md`**: Colima install and usage on Apple Silicon, including moving Docker image storage to an external SSD.
+*   **`colima-docker.md`**: Docker on macOS without Docker Desktop: Colima install/usage, Docker Hub credentials (osxkeychain), profiles and contexts, mount/buildx gotchas, and moving image storage to an external SSD.
 *   **`debugging.md`**: Network debugging tips (ngrep).
 *   **`dkpg.md`**: DPKG package management cheat sheet.
 *   **`docker.md`**: Docker commands and container management.
