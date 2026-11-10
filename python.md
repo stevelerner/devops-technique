@@ -1,25 +1,20 @@
 # Python Cheat Sheet
 
-## Installation
-**Install pip:**
+**Virtual environment per project (never `pip install` into the system Python):**
 ```bash
-sudo apt install -y python3-pip
+python3 -m venv .venv && source .venv/bin/activate
+python -m pip install -r requirements.txt
 ```
 
-## Package Management
+**uv (fast; also locks dependencies):**
+```bash
+brew install uv
+uv venv && uv pip install -r requirements.txt
+uv pip compile requirements.in --universal --python-version 3.13 -o requirements.txt   # lock
+```
+
 **List outdated packages:**
 ```bash
-python3 -m pip list --outdated
+python -m pip list --outdated
 ```
-
-**Update packages:**
-
-*Host:*
-```bash
-python3 -m pip freeze --user | cut -d'=' -f1 | xargs -n1 python3 -m pip install -U
-```
-
-*VM:*
-```bash
-python3 -m pip freeze | cut -d'=' -f1 | xargs -n1 python3 -m pip install -U
-```
+Upgrade deliberately by editing `requirements.in` and re-locking; do not bulk-upgrade everything with `pip freeze | xargs pip install -U`.

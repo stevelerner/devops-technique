@@ -10,19 +10,15 @@ sudo chmod 644 /etc/rancher/k3s/k3s.yaml
 export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
 ```
 
-**Install K3s on Ubuntu:**  
-```bash
-bash <(curl -s https://raw.githubusercontent.com/stevelerner/devops-technique/master/k3s.sh)
-```
+**Install K3s on Ubuntu:** `./k3s.sh`
 
-**Install k9s:** [Releases](https://github.com/derailed/k9s/releases)
+**Install k9s:** `brew install k9s`
 
 ## Configuration & Context
-**Colima (current Mac setup, see [colima-docker.md](colima-docker.md)):**  
-`kubectl config use-context colima`
+**Mac (Colima + kind, see [colima-docker.md](colima-docker.md)):**  
+`kubectl config use-context colima` (Colima's own k8s) or `kubectl config use-context kind-<cluster>`
 
-**Docker Desktop for Mac:**  
-`kubectl config use-context docker-desktop`
+**List / switch contexts:** `kubectl config get-contexts`
 
 **Change default namespace:**  
 `kubectl config set-context --current --namespace=<insert-namespace-name-here>`    
@@ -64,7 +60,7 @@ Example: `kubectl patch deployment DEPLOYMENTNAME --patch "$(cat patch-file.yaml
 
 ## Ingress
 **Show ingress controllers:** `kubectl get ing -A`   
-**Delete ingress controllers:** `delete ingress INGRESSNAME`  
+**Delete an ingress:** `kubectl delete ingress INGRESSNAME`  
 
 ## Debugging Container
 **Install ping/curl on minimal container:**  

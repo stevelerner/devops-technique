@@ -2,9 +2,7 @@
 
 ## Installation
 **Install Docker on Ubuntu:**
-```bash
-bash <(curl -s https://raw.githubusercontent.com/stevelerner/devops-technique/master/docker-install.sh)
-```
+Ubuntu/Debian server: `./docker-install.sh` (Docker's apt repo). macOS: no Docker Desktop needed, see [colima-docker.md](colima-docker.md).
 
 ## Container Management
 **Create an ubuntu docker container:**  

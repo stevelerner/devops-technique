@@ -1,10 +1,7 @@
 # Helm Cheat Sheet
 
 ## Installation
-**Install helm on ubuntu:**
-```bash
-curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
-```
+**Install:** `brew install helm` (macOS) or `curl -fsSL https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash` (Linux)
 
 ## Commands
 
