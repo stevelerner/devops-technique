@@ -46,7 +46,7 @@ Details: [Docker without Docker Desktop](colima-docker.md) · [kind on Colima](k
 
 | Guide | What's in it |
 |---|---|
-| [git.md](git.md) | Git and GitHub CLI, worktrees, credentials |
+| [git.md](git.md) | Git and GitHub CLI, worktrees, credentials, a different GitHub account per repo |
 | [aws.md](aws.md) | EC2, ECR, EKS from the CLI |
 | [debugging.md](debugging.md) | Network, process and container debugging on macOS |
 | [python.md](python.md) | venv and uv |
