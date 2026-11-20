@@ -31,7 +31,7 @@ git config --local --add credential.helper \
 ```
 Git now asks `gh` for that account's token on every push, whichever account is active globally. Repos without this block fall back to `~/.gitconfig`, which uses the globally active `gh` account (`gh auth switch` changes it).
 
-**3. The `gh` CLI (PRs, releases, `gh api`): direnv sets `GH_TOKEN` when you enter the folder.** One-time setup: `brew install direnv`, add `eval "$(direnv hook zsh)"` to `~/.zshrc`, open a new terminal. Then in the repo root:
+**3. The `gh` CLI (PRs, releases, `gh api`): direnv sets `GH_TOKEN` when you enter the folder.** One-time setup: `brew install direnv`, add the hook to your shell's startup file (bash: `echo 'eval "$(direnv hook bash)"' >> ~/.bash_profile`; zsh: `echo 'eval "$(direnv hook zsh)"' >> ~/.zshrc`), open a new terminal. Then in the repo root:
 ```bash
 echo 'export GH_TOKEN=$(gh auth token --user tinyolly)' > .envrc
 direnv allow
@@ -41,7 +41,7 @@ Leaving the folder unsets it. Add `.envrc` to your global ignore (`~/.config/git
 **Check it:** `cd` into the repo, then `gh api user --jq .login` (should print that repo's account) and `git config --show-origin --get-all credential.helper` (shows the per-repo helper last). Wrong account on push gives a 403; fix the `ACCOUNT` in step 2.
 
 ### Generic recipe: any account, any repo
-Replace `ACCOUNT` with the GitHub login and run from the repo root. Needs `gh`, `direnv` (hooked in `~/.zshrc`) and a one-time `gh auth login` for that account.
+Replace `ACCOUNT` with the GitHub login and run from the repo root. Needs `gh`, `direnv` (hooked in `~/.bash_profile` or `~/.zshrc`) and a one-time `gh auth login` for that account.
 ```bash
 ACCOUNT=some-login                                   # 1. the GitHub login to use in this repo
 
