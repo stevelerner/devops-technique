@@ -28,3 +28,22 @@ Useful for wiping a SD card / USB drive that has a foreign partition table (e.g.
    ```bash
    diskutil eraseDisk ExFAT SDCARD GPT /dev/disk4
    ```
+
+## Shell
+
+**Make sure macOS uses bash:**
+1. Check the current login shell:
+   ```bash
+   echo $SHELL
+   dscl . -read /Users/$USER UserShell
+   ```
+2. Switch to bash if it isn't (`/bin/bash` is Apple's built-in 3.2; use `/opt/homebrew/bin/bash` for a newer one, after adding it to `/etc/shells`):
+   ```bash
+   chsh -s /bin/bash
+   ```
+3. Open a new terminal window. Silence the "default shell is now zsh" notice:
+   ```bash
+   echo 'export BASH_SILENCE_DEPRECATION_WARNING=1' >> ~/.bash_profile
+   ```
+
+Bash login shells (Terminal.app, iTerm) read `~/.bash_profile`, not `~/.zshrc`. Put aliases and exports there.

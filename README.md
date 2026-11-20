@@ -29,7 +29,7 @@ Details: [Docker without Docker Desktop](colima-docker.md) · [kind on Colima](k
 
 | Guide | What's in it |
 |---|---|
-| [colima-docker.md](colima-docker.md) | Docker on macOS without Docker Desktop: Colima, Docker Hub credentials, profiles and contexts, mounts, buildx, moving Colima storage to an external SSD (symlink or `COLIMA_HOME`) |
+| [colima-docker.md](colima-docker.md) | Docker on macOS without Docker Desktop: Colima, Docker Hub credentials, profiles and contexts, mounts, buildx, moving Colima storage to `/Volumes/Code` via a `~/.colima` symlink |
 | [kind-colima.md](kind-colima.md) | Local Kubernetes with kind: port mapping, loading local images |
 | [docker.md](docker.md) | Run, build, Compose, arm64 vs amd64 |
 | [k8s.md](k8s.md) | kubectl, contexts, `kubectl debug` |

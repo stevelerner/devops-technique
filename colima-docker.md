@@ -41,60 +41,48 @@ colima delete
 
 Once running, the regular `docker` CLI works as normal (`docker ps`, `docker build`, `docker run`, etc.) — Colima wires up the `DOCKER_HOST` for you.
 
-## Moving Colima's Storage to an External SSD
-Everything Colima owns (VM disks holding all images/containers/volumes, per-profile configs, the Docker socket) lives in `~/.colima`. Two ways to put it on another volume; the VM-moving steps are the same, only the "repoint" step differs.
+## Moving Colima's Storage to /Volumes/Code
+Everything Colima owns (VM disks holding all images/containers/volumes, per-profile configs, the Docker socket) lives in `~/.colima`. Keep that default path, but make it a symlink to `/Volumes/Code/.colima`. Colima, Docker, IDEs, scripts and launchd jobs all keep using `~/.colima`, so there is no env var and no bash/zsh difference.
 
-| | Symlink `~/.colima` | `COLIMA_HOME` env var |
-|---|---|---|
-| Works in every shell, IDE, script, launchd job | yes, nothing to configure | only where the variable is set |
-| Failure mode | drive unmounted: dangling link, `colima start` errors | variable missing: silently creates a second empty Colima in `~/.colima` |
-| Best for | one machine, many tools (recommended default) | CI, or when you must not touch `~/.colima` |
+Stop Colima and quit anything using Docker first.
 
-Quote the path if the volume name has spaces (e.g. `"/Volumes/2TB Backup/colima"`). Stop Colima and quit anything using Docker first.
-
-**Step 1: get the data to the SSD**
+**Step 1: get the data to /Volumes/Code**
 - *Keep images and volumes (copy):*
   ```bash
   colima stop -p default; colima stop -p other      # every profile in `colima list`
-  mkdir -p /Volumes/external/colima
-  rsync -aS --progress ~/.colima/ /Volumes/external/colima/   # -S keeps the VM disk sparse; plain cp/mv can inflate it
+  mkdir -p /Volumes/Code/.colima
+  rsync -aS --progress ~/.colima/ /Volumes/Code/.colima/   # -S keeps the VM disk sparse; plain cp/mv can inflate it
   mv ~/.colima ~/.colima.old                         # backup until it works
   ```
 - *Wipe and start fresh (simplest, nothing to copy):* save each profile's config, delete the VMs and their data disks.
   ```bash
-  mkdir -p /Volumes/external/colima
+  mkdir -p /Volumes/Code/.colima
   for p in $(colima list -j | jq -r .name); do       # or list the profiles by hand
-    mkdir -p /Volumes/external/colima/$p && cp ~/.colima/$p/colima.yaml /Volumes/external/colima/$p/
+    mkdir -p /Volumes/Code/.colima/$p && cp ~/.colima/$p/colima.yaml /Volumes/Code/.colima/$p/
     colima delete -f --data -p $p
   done
   rm ~/.colima 2>/dev/null || mv ~/.colima ~/.colima.old     # link or directory
   ```
   `colima delete` without `--data` leaves the container-data disk behind in `_lima/_disks`.
 
-**Step 2: repoint Colima (pick one)**
-- *Symlink:*
-  ```bash
-  ln -s /Volumes/external/colima ~/.colima
-  ```
-- *Env var:*
-  ```bash
-  echo 'export COLIMA_HOME="/Volumes/external/colima"' >> ~/.zshrc
-  export COLIMA_HOME="/Volumes/external/colima"
-  ```
+**Step 2: link the default path to /Volumes/Code**
+```bash
+ln -s /Volumes/Code/.colima ~/.colima
+```
 
 **Step 3: start and check**
 ```bash
-colima start -p <profile>      # fresh start reuses <dir>/<profile>/colima.yaml (cpu, memory, mounts)
+colima start -p <profile>      # fresh start reuses ~/.colima/<profile>/colima.yaml (cpu, memory, mounts)
 docker ps                      # after a copy: images/volumes survived? then rm -rf ~/.colima.old
-du -sh /Volumes/external/colima/_lima/_disks/*     # VM disks are on the SSD
+du -sh /Volumes/Code/.colima/_lima/_disks/*     # VM disks are on /Volumes/Code
 ```
 
 Notes:
-- **Mount the drive before `colima start`.** With a symlink an unmounted drive leaves a dangling link; with the env var Colima may build a new empty VM.
+- **Mount the drive before `colima start`.** An unmounted drive leaves a dangling link and `colima start` errors.
 - **Removing a symlink:** `rm ~/.colima` (no trailing slash, no `-r`) deletes only the link, not the data. `rm -rf ~/.colima/` would follow it and delete the data.
-- **Don't mix the two:** with the symlink in place you do not need `COLIMA_HOME`; if both are set, `COLIMA_HOME` wins.
-- Images and builds are slower on an external drive (USB especially) than on the internal SSD.
-- The VM mounts only `$HOME`. Repos on the external volume need `--mount "/Volumes/external/code:w"` or a `mounts:` entry in the profile's `colima.yaml`; see Gotchas.
+- Don't also set `COLIMA_HOME`; it would override the default path and bypass the symlink.
+- Images and builds are slower on /Volumes/Code (USB)  than on the internal SSD.
+- The VM mounts only `$HOME`. Repos on /Volumes/Code need `--mount "/Volumes/Code:w"` or a `mounts:` entry in the profile's `colima.yaml`; see Gotchas.
 - Disk size is set by `--disk` (`colima.yaml: disk:`), independent of where the files live.
 
 ## Complete setup without Docker Desktop
@@ -143,9 +131,9 @@ export DOCKER_CONTEXT="${DOCKER_CONTEXT:-colima-${COLIMA_PROFILE:-default}}"
 ```
 
 ## Gotchas
-- **Bind mounts only see mounted paths.** Colima mounts `$HOME` by default. A repo elsewhere (e.g. `/Volumes/external/...`) must be mounted or bind-mounted files appear as empty directories ("is a directory" errors):
+- **Bind mounts only see mounted paths.** Colima mounts `$HOME` by default. A repo elsewhere (e.g. `/Volumes/Code/...`) must be mounted or bind-mounted files appear as empty directories ("is a directory" errors):
   ```bash
-  colima start --mount "$HOME:r" --mount "/Volumes/external/code:w"
+  colima start --mount "$HOME:r" --mount "/Volumes/Code:w"
   ```
   Mount changes need a VM restart. `/tmp` is not mounted either.
 - **Reach the Mac from a container:** `host.docker.internal`.
