@@ -31,17 +31,27 @@ Useful for wiping a SD card / USB drive that has a foreign partition table (e.g.
 
 ## Shell
 
-**Make sure macOS uses bash:**
-1. Check the current login shell:
+**Install and switch to modern Bash (Homebrew):**  
+macOS ships with an outdated Bash (v3.2) due to licensing. To install the latest Bash version and set it as your default login shell:
+
+1. Install modern Bash:
+   ```bash
+   brew install bash
+   ```
+2. Add Homebrew's Bash path to allowed login shells in `/private/etc/shells`:
+   ```bash
+   echo $(brew --prefix)/bin/bash | sudo tee -a /private/etc/shells
+   ```
+3. Change default login shell to Homebrew Bash:
+   ```bash
+   chsh -s $(brew --prefix)/bin/bash
+   ```
+4. Verify shell and version:
    ```bash
    echo $SHELL
-   dscl . -read /Users/$USER UserShell
+   bash --version
    ```
-2. Switch to bash if it isn't (`/bin/bash` is Apple's built-in 3.2; use `/opt/homebrew/bin/bash` for a newer one, after adding it to `/etc/shells`):
-   ```bash
-   chsh -s /bin/bash
-   ```
-3. Open a new terminal window. Silence the "default shell is now zsh" notice:
+5. Open a new terminal window. Silence the "default shell is now zsh" notice:
    ```bash
    echo 'export BASH_SILENCE_DEPRECATION_WARNING=1' >> ~/.bash_profile
    ```

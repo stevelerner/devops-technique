@@ -50,7 +50,7 @@ Details: [Docker without Docker Desktop](colima-docker.md) · [kind on Colima](k
 | [aws.md](aws.md) | EC2, ECR, EKS from the CLI |
 | [debugging.md](debugging.md) | Network, process and container debugging on macOS |
 | [python.md](python.md) | venv and uv |
-| [macos.md](macos.md) | Disk imaging and formatting |
+| [macos.md](macos.md) | Disk imaging and formatting, updating Bash via Homebrew |
 | [ssl.md](ssl.md), [promql-faves.md](promql-faves.md) | One-liners |
 
 ---
